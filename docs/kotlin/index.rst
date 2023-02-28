@@ -1,7 +1,7 @@
 kotlin
 ##################
 
-本文记录了一些对于 kotlin 的理解
+记录一些对 kotlin 的理解
 
 .. toctree::
     :maxdepth: 2
