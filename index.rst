@@ -3,17 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to daily tec's documentation!
+随便写的一些技术文档
 =====================================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: 目录:
 
    ./docs/kotlin/index.rst
 
 
-Indices and tables
+索引页面
 ==================
 
 * :ref:`genindex`

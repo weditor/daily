@@ -17,7 +17,7 @@ someList.lastOrNull()
 someList.firstOrNull()
 ```
 
-也终于不用什么 CollectionUtils, Arrays, StringUtils 了. 我们可以使用 真·面向对象 的方式写:
+也终于不用什么 CollectionUtils, Arrays, StringUtils 了. 我们可以使用 **真·**面向对象 的方式写:
 
 ```kotlin
 if (text.isEmpty())
@@ -25,6 +25,16 @@ if (text.isNullOrEmpty())
 if (textA == textB)
 if (listA == listB)
 val setA = listA.toSet()
+```
+
+也不用担心自己创建的集合传入第三方函数后，数据被哪个老六改掉了，因为 kotlin 集合默认是不可变的:
+
+```kotlin
+val listA = listOf(1, 2, 3)
+listA.add(33) // ERROR!!
+
+val listB = mutableListOf(1, 2, 3)
+listB.add(33) // OK
 ```
 
 连 stream 的体验都上升了一个档次:

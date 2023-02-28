@@ -1,0 +1,10 @@
+1. gradle
+2. 双数组
+3. antlr
+4. projectreactor
+5. netty
+6. vert.x
+7. python 协程
+8. python 解释器
+9. 函数时编程，y-combinator, Monad
+10. https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python; https://www.cnblogs.com/JetpropelledSnake/p/9094103.html
