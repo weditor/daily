@@ -17,7 +17,7 @@ someList.lastOrNull()
 someList.firstOrNull()
 ```
 
-也终于不用什么 CollectionUtils, Arrays, StringUtils 了. 我们可以使用 **真·**面向对象 的方式写:
+也终于不用什么 CollectionUtils, Arrays, StringUtils 了. 我们可以使用 **真·面向对象** 的方式写:
 
 ```kotlin
 if (text.isEmpty())

@@ -4,7 +4,7 @@
 
 java 声明的变量: `String name = "Tom"`
 
-kotlin 声明的变量: `val name = "Tom"`
+kotlin 声明的变量: `var name = "Tom"`
 
 java 支持声明不可变的变量: `final String name = "Tom"`.
 
@@ -116,11 +116,12 @@ java 在 jdk15 等新版本中也增加了 record class，与 data class 类似�
 ## 可变 vs. 不可变
 
 新兴编程语言很多都开始吸收函数式编程的数据不可变性的思想。kotlin 在这方面也抄了一些。
-不过 kotlin 并不是一个极端函数式编程语言，也仅仅是偏向数据不可变而已。例如:
+不过 kotlin 并不是一个极端函数式编程语言，也仅仅是偏向数据不可变而已。这些偏好体现在:
 
 1. 类默认 final，除非显式加上 open
-2. 集合类型默认不可变，除非加上 mutable 前缀，如 `mutableListOf(...)`
-3. 鼓励使用 val 而不是 var.
+2. 成员变量、函数默认 final，除非显式加上 open
+3. 集合类型默认不可变，除非加上 mutable 前缀，如 `mutableListOf(...)`
+4. 鼓励使用 val 而不是 var.
 
 数据的不可变性，对于写出好维护的代码至关重要。
 kotlin 的非空概念 + 不可变性，是保证项目持续可维护的一大神器。
@@ -134,7 +135,7 @@ update = delete + create. 创建一个新的，销毁旧的。例如修改年龄
 不过 kotlin 对于 data class 提供了 copy 语法糖: `val user2 = user.copy(age=18)`
 
 至于性能问题, 没有确切的 profile 证据，实在是没必要在这种地方抠性能。
-而且人工成本大于机器成本。
+而且人工维护成本大于机器运行成本。
 
 **问题 2**: 所有字段都声明为 public, 后期需求变更，那个字段变成了只能函数计算怎么办?
 
@@ -147,8 +148,7 @@ class User(val age: Int, val firstName: String, val lastName: String) {
 }
 ```
 
-**问题 3**: 下面的代码，由于 name 的构造过于复杂，导致我们不得不先声明一个临时变量，然后修改它，
-破坏不可变性的使用，
+**问题 3**: 下面的代码，由于 name 的构造过于复杂，导致我们不得不先声明一个临时变量，然后修改它。
 
 ```kotlin
 var name = ""
@@ -165,12 +165,14 @@ else if (...) {
 kotlin 支持的一些变种赋值语法可以解决这类问题:
 
 ```kotlin
+// 情境 1
 val name = if (...) {
     "A"
 } else {
     "B"
 }
 
+// 情境 2
 val name = run {
     var tmpName = ""
     // 这里一些很复杂的代码

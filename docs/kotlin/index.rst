@@ -9,8 +9,8 @@ kotlin
     ./collection.md
     ./type-system.md
     ./dataclass.md
-    ./inline-and-generic.md
     ./enum-and-sealed.md
+    ./inline-and-generic.md
     ./extension.md
     ./scope-func.md
     ./delegate.md

@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'daily tec'
+project = '技术记录'
 copyright = '2023, zeroswan'
 author = 'zeroswan'
 
