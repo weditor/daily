@@ -95,7 +95,7 @@ fun doubleNumber(num: Int) {
 **问题 2**: 为什么 Void 不是空集合?
 
 它的解释过程是这样的。
-先说一个普通函数函数，例如 `Int => String`, 任何一个 Int 都会映射到一个 String，这个函数本身存在的意义就是让我们得到那个 String;
+先说一个普通函数，例如 `Int => String`, 任何一个 Int 都会映射到一个 String，这个函数本身存在的意义就是让我们得到那个 String;
 而对于 Void 函数: `Int => Void`, 因为 Void 集合本身只有一个值，所以即使这个函数不执行，
 我们也知道输入的 Int 会映射到的目标值(因为 Void 集合本身只有一个值)。这种返回值的意义不是很大，所以这种函数从范畴论角度看意义也不大，
 现实情况中通常这种函数的意义都是通过 **副作用** 体现，例如 `deleteFile(file: String): Void`.
@@ -142,7 +142,7 @@ class WebResult<T>(val code: Int, val msg: String, val data: T)
 ```
 
 但是，如果有一个接口不需要返回任何数据怎么办呢? 我们可以实例化 `WebResult<Unit>(0, "ok", Unit)`,
-而在 java 中, 没有办法实例化 Void.
+而在 java 中, 我们可以声明 `WebResult<Void>`, 但没有办法实例化 Void, 只能用 null.
 
 ### NoReturn
 
@@ -179,7 +179,7 @@ fun binCalc(left: Int, right: Int, op: String): Int {
 }
 ```
 
-会发现，在 java 中压根实现不了这样的函数! 而在 kotlin 中却可以, 这都得益于 NoReturn:
+会发现，在 java 中压根实现不了这样的函数! 无法通过类型检查，而在 kotlin 中却可以, 这都得益于 NoReturn:
 
 ```kotlin
 fun YOU_SHOULD_NOT_BE_HERE(): NoReturn {
@@ -207,8 +207,32 @@ fun YOU_SHOULD_NOT_BE_HERE(): NoReturn {
 如果需要类似 java 的可空类型，可以加上问号: `Int? = {null} | {0, 1, -1, 2, -2, ...}`。
 在语言级别支持了非空类型以及 Optional，它们之间具备继承关系。
 
+### 对于 null 的其他支持
+
+`?.` 操作符
+
+> `obj?.member` 等价于 `obj != null? obj.member : null`, 例如: `val num = text?.toInt()?.inc()`
+
+`!!` 操作符
+
+> 对于第三方返回的可空值，如 `val text: String?`, 如果我们业务逻辑上知道它必不为空，
+> 可以通过 `!!` 断言转换为非空值，例如 `"hello " + text!!` `val num = text!!.toInt().inc()`.
+
+`?:` 操作符
+
+> 一般用于函数入口处的保护判断，后面可接 return/throw, 例如数据库没有查到会返回 null 的情况:
+>
+> ```kotlin
+> fun getUser(id: Int?): User {
+>     val user = userRepository.findById(id)?: throw NotFoundError()
+>     val user = userRepository.findById(id)?: return AnoymousUser()
+> }
+> ```
+>
+> 也可以在为 null 的时候取默认值: `val num: Int = text?.toInt() ?: 0`
+
 ## 总结
 
 总体上 kotlin 在类型系统上的改进比较有限，不过仍然解决了一些痛点。
 
-如果想体验另一些 _好的类型系统_ 设计，强烈推荐试试 typescript。
+如果想体验另一些 _更好的类型系统_ 设计，强烈推荐试试 typescript。

@@ -11,7 +11,7 @@ kotlin
     ./dataclass.md
     ./enum-and-sealed.md
     ./inline-and-generic.md
+    ./delegate.md
     ./extension.md
     ./scope-func.md
-    ./delegate.md
     ./multiplatform.md
