@@ -1,10 +1,10 @@
 # 代理
 
-kotlin 的代理通过 `by` 关键字实现。实际使用时主要有两种用途: 接口代理、属性代理。
+kotlin 的代理通过 `by` 关键字实现，有两种代理: 接口代理、属性代理。
 
 ## 接口代理
 
-接口代理，这种使用方法来源于装饰器模式。可以使用 kotlin 的代理快速实现装饰器模式。
+接口代理，这种使用方法来源于代理模式。也可以使用 kotlin 的代理快速实现装饰器模式。
 
 例如 我们有下面的一个接口及其实现:
 
@@ -92,7 +92,7 @@ println(user.getEmail())
 当然, 代理也不一定只能代理一个接口, 可以实现多个代理, 而且也可以传递一些其他参数:
 
 ```kotlin
-class ReadWriteDeletage(
+class UserGroupDeletage(
     val user: User,
     val group: Group,
     val useGroupPerm: Boolean,
