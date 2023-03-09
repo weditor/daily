@@ -11,6 +11,7 @@
    :caption: 目录:
 
    ./docs/kotlin/index.rst
+   ./docs/gradle/index.rst
 
 
 索引页面
