@@ -12,3 +12,10 @@
 kotlin 引入的 `val` 、 `scope function` 等单独看似乎平平无奇，
 但它们为代码提供的额外语义，积累起来形成的编程风格已经和 java 相去甚远。
 kotlin 本身很简单，要领会 kotlin 的编程风格，要花费大量时间。
+
+## 接下来
+
+也许可以了解一下 [kotlin 协程](https://kotlinlang.org/docs/coroutines-overview.html) , [ArrowKt](https://arrow-kt.io/), [kotlin native](https://kotlinlang.org/docs/native-overview.html)?
+
+另外，最近(2022-12) kotlin 已经把 wasm 的原生支持排上了 roadmap; K2 编译器也有望 2023 年 stable 。
+社区和官方都很活跃, 未来可期。

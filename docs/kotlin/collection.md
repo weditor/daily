@@ -1,6 +1,6 @@
 # 集合操作
 
-对于初步从 java 转 kotlin 的人来说。感受最深的地方，绝对包含了 kotlin 丰富的集合操作。
+对于刚从 java 转 kotlin 的人来说。感受最深的地方，绝对包含了 kotlin 丰富的集合操作。
 
 再也不用 new 一个集合挨个塞元素了。kotlin 可以:
 
@@ -48,9 +48,10 @@ texts
 val userMap: Map<Int, User> = users.associateBy { u -> u.getId() }
 ```
 
-也许你能想出对集合的 20 中操作方法，但是 kotlin 能给你自带 100 个，编码提速必备。
+kotlin 的集合操作，远不止上面这些。
+也许你能想出对集合的 20 中操作方法， kotlin 能给你自带 100 个，编码提速必备。
 
-探索一下编辑器提示的方法，以及官方文档，这一切你值得拥有:
+继续探索更多集合操作，可以通过编辑器提示的方法，以及官方文档，这一切你值得拥有:
 
 1. [从 java 到 kotlin 之 string](https://kotlinlang.org/docs/java-to-kotlin-idioms-strings.html)
 2. [从 java 到 kotlin 之 collections](https://kotlinlang.org/docs/java-to-kotlin-collections-guide.html)

@@ -14,5 +14,4 @@ kotlin
     ./delegate.md
     ./extension.md
     ./scope-func.md
-    ./multiplatform.md
     ./over.md
