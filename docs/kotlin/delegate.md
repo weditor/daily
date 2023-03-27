@@ -47,8 +47,8 @@ println(delegateUser.getEmail()) // tom@outlook.com
 ```kotlin
 // class ObserveOnUser(private val user: AbstractUser): AbstractUser by user
 class ObserveOnUser(private val user: AbstractUser): AbstractUser {
-    override fun getName() = user.name
-    override fun getEmail() = user.email
+    override fun getName() = user.getName()
+    override fun getEmail() = user.getEmail()
 }
 ```
 
@@ -178,8 +178,8 @@ println(user.name) // someone's getting User@282003e1 -> var User.name: kotlin.S
 ```
 
 > 关于 getValue/setValue 的参数含义，这里通过案例来说明。
-> 对 `user.name` 的访问相当于执行了 `ObservableString::getValue(user, user::name)`;
-> 设置 `user.name = "Tom"` 相当于执行了 `ObservableString::setValue(user, user::name, "Tom")`。
+> 对 `user.name` 的访问相当于执行了 `ObservableString::getValue(user, User::name)`;
+> 设置 `user.name = "Tom"` 相当于执行了 `ObservableString::setValue(user, User::name, "Tom")`。
 
 通过属性代理，可以把对成员的赋值操作转移到代理类的 `setValue` 函数上，取值操作转移到代理类的 `getValue` 上。
 因此操作空间非常大!

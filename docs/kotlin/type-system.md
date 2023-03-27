@@ -145,9 +145,9 @@ class WebResult<T>(val code: Int, val msg: String, val data: T)
 但是，如果有一个接口不需要返回任何数据怎么办呢? 我们可以实例化 `WebResult<Unit>(0, "ok", Unit)`,
 而在 java 中, 我们可以声明 `WebResult<Void>`, 但没有办法实例化 Void, 只能用 null 将就一下.
 
-### NoReturn
+### Nothing
 
-kotlin 中空集类型为 `NoReturn`, 对应 typescript 的 `never`.
+kotlin 中空集类型为 `Nothing`, 对应 typescript 的 `never`.
 
 它的应用场景是这样的. 下面这个例子是一个做加减乘除的函数:
 
@@ -180,15 +180,15 @@ fun binCalc(left: Int, right: Int, op: String): Int {
 }
 ```
 
-会发现，在 java 中压根实现不了这样的函数! 无法通过类型检查，而在 kotlin 中却可以, 这都得益于 NoReturn:
+会发现，在 java 中压根实现不了这样的函数! 无法通过类型检查，而在 kotlin 中却可以, 这都得益于 Nothing:
 
 ```kotlin
-fun YOU_SHOULD_NOT_BE_HERE(): NoReturn {
+fun YOU_SHOULD_NOT_BE_HERE(): Nothing {
     throw IllegalArgumentError("you should not be here, maybe it's a bug")
 }
 ```
 
-kotlin 的 `TODO` 功能就接住了 NoReturn 实现
+kotlin 的 `TODO` 功能就借助了 Nothing 实现
 
 ### 非空
 

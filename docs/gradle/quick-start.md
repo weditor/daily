@@ -242,14 +242,15 @@ BUILD SUCCESSFUL in 15s
 
 恭喜! 至此您已经学会使用 gradle 进行日常 java 开发了.
 
+如果想了解如何新建其他类型项目(如 kotlin/c++)，可以参照 gradle [samples](https://docs.gradle.org/current/samples/index.html) 页面的案例。
+
 ## 梦的破碎
 
 gradle 是 maven 的替代品吗? 是的。但 gradle 不是 maven!
 
 gradle 可以像上面一样用的很简单，也可以用的很复杂。
-
 真实项目场景下，难免也会遇到很复杂的 gradle 构建脚本，
-初学者初次面对这类构建脚本往往一头雾水，例如下面是 spring-core 的构建脚本:
+初学者初次面对这类构建脚本往往一头雾水，例如下面是节选 spring-core 的构建脚本:
 
 ```groovy
 description = "Spring Core"
@@ -346,11 +347,12 @@ eclipse {
 tasks['eclipse'].dependsOn(javapoetRepackJar, javapoetSourceJar, objenesisRepackJar, objenesisSourceJar)
 ```
 
-这是因为 gradle 是一种通用型任务工具，而 maven 更多地是作为 java 依赖管理工具, 两者不是同一个领域的东西。
-只不过在 java 领域，maven 附加地构建功能刚好够用而已。
-maven 的简单是因为它只能完成这么简单的工作，在 gradle 的复杂度体现在，只要稍微使用 gradle 的高级特性，
+与 maven 的简单比起来，gradle 这种复杂度令人望而生畏。
+很多 gradle 教程也试图掩盖这些东西(把狗先骗进来再杀)。
+不过不用担心，后面的章节会帮助大家理解 gradle 的工作原理，将把这些东西全都剥开，这些前期看似复杂的配置后面就都能看懂了(至少知道怎么能看懂)。
+
+这都是因为 gradle 是一种通用型任务工具，而 maven 更多地是作为 java 依赖管理工具, 两者不是同一个领域的东西。
+只不过在 java 领域，maven 附加的构建功能刚好够用而已。
+maven 的简单是因为它只能完成这么简单的工作，在 gradle 的复杂在于，只要使用 gradle 的高级特性，
 很可能就会让构建脚本复杂度急剧上升。
 毫无疑问 gradle 功能更加强大，也更难把控。
-
-不过不用担心，后面的章节会帮助大家理解 gradle 的工作原理，这些前期看似复杂的配置后面就都能看懂了。
-而且 gradle 拥有诸如 buildSrc 模块化特性，可以很大程度上帮忙简化构建脚本。
