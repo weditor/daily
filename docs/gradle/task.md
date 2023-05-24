@@ -221,11 +221,11 @@ println("hello world")
 所以... 如果不知道 gradle 有哪些配置项，想了解 _Project 里面有什么东西_ 。可以通过两种途径:
 
 1. 官方文档 [kotlin-api#Project](https://gradle.github.io/kotlin-dsl-docs/api/org.gradle.api/-project/index.html)
-2. 编辑器中敲入 `this.` 查看代码提示
+2. 编辑器中敲入 `this.` 或者 `project.` 查看代码提示
 
    ![gradle hint](/_static/gradle/gradle-project-this.jpg)
 
-可以通过 `this` 的代码提示找出所有操作。
+可以通过 `this` 以及 `project` 的代码提示找出所有操作。
 
 ### Task 对象
 
@@ -246,7 +246,9 @@ helloTask.doLast({ println("hello doLast") })
 this.tasks.add(task)
 ```
 
-当然，这只是伪代码，实际上是无法通过的，因为 Gradle 的 `Task` 是一个 interface，无法直接实例化出来。但是 gradle 的 `TaskContainer` 提供了 `create` 接口能够创建一个 Task，所以只需要稍微改造一下:
+当然，这只是伪代码，实际上是无法通过的，因为 Gradle 的 `Task` 是一个 interface，无法直接实例化。
+不过 gradle 的 `TaskContainer` 提供了 `create` 方法创建 Task，
+所以只需要稍微改造一下:
 
 ```kotlin
 // 调用 TaskContainer.create
@@ -257,11 +259,14 @@ helloTask.doFirst({ println("hello doFirst") })
 helloTask.doLast({ println("hello doLast") })
 ```
 
-不过，上面的代码有语法错误，因为 _gradle_ 要求不能通过 `this` 显示引用 `Project` 对象，只需要把上面的 `this` 去掉就好了:
+不过，上面的代码有语法错误，因为 _gradle_ 要求不能通过 `this` 显式引用 `Project` 对象，只需要把上面的 `this` 去掉就好了； 或者改成通过 `project` 关键字引用 :
 
 ```kotlin
 // 把 this.tasks 改成 tasks
 val helloTask = tasks.create("hello")
+// 或者改成:
+// val helloTask = project.tasks.create("hello")
+
 // 因为没有 task1/task2, 这里先注释掉
 // helloTask.dependsOn("task1", "task2")
 helloTask.doFirst({ println("hello doFirst") })
@@ -280,7 +285,7 @@ hello doLast
 
 #### task dsl 的简化
 
-**kotlin 特性** : lambda 作为函数最后一个参数时，可以省略括号。
+**kotlin 特性 1** : lambda 作为函数最后一个参数时，可以省略括号。
 
 借助这个特性，上面的 task 声明代码可以简化成这样:
 
@@ -297,7 +302,7 @@ helloTask.doLast {
 
 这下有点 dsl 的意思了。
 
-**kotlin 特性** : 对象初始化可以通过 scope function - apply 简化.
+**kotlin 特性 2** : 对象初始化可以通过 scope function - apply 简化.
 
 借助这个特性，则可以简化成这样:
 
@@ -328,7 +333,7 @@ tasks.create("hello").apply {
 大功告成!!
 
 实际上的 dsl 把 apply 也省略掉了，实现原理也很简单，
-就是内部仿照 apply 实现了一遍，如果对 apply 原理不太了解, 也可以简单理解为这样(意思一下得了，别当真):
+就是内部仿照 apply 实现了一遍:
 
 ```kotlin
 TaskContainer.register(name: String, action: Action<Task>) {
