@@ -12,6 +12,8 @@
 
    ./docs/kotlin/index.rst
    ./docs/gradle/index.rst
+   ./docs/torch/index.rst
+   ./docs/daily/index.rst
 
 
 索引页面

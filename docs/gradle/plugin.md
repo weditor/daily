@@ -5,14 +5,14 @@
 构建项目过程中，有一些逻辑是通用的，比如构建 JavaDoc。
 如果按照常规做法，我们得在每个 project 里面写一次 JavaDoc 构建任务的 task:
 
-````kotlin
+```kotlin
 // build.gradle.kts
 project.task("buildDoc") {
     doLast
         println("building document from comment... ")
     }
 }
-``
+```
 
 一个常规做法是文件复用, 这里就涉及到另一个知识: Gradle 的构建脚本(\*.kts) 是可以被其他构建脚本引入(import)的！
 按照这个思路，我们把需要复用的逻辑放到 javadoc.gradle.kts 里面，然后其他项目引用它:
@@ -27,7 +27,7 @@ project.task("buildDoc") {
 
 // build.gradle.kts
 apply(from = "myPlugins/javadoc.gradle.kts")
-````
+```
 
 然后我们就可以执行 `gradle buildDoc` 使用这个任务了.
 另外，`apply(from = ...)` 的语法不仅支持本地文件，也支持远程(http)文件.

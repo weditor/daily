@@ -13,23 +13,29 @@ author = 'zeroswan'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["myst_parser"]
+extensions = [
+    "myst_parser", 
+    "sphinx_design", 
+    "sphinx.ext.mathjax", 
+    "sphinxcontrib.mermaid",
+]
+myst_enable_extensions = ["colon_fence", "dollarmath", "attrs_inline"]
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', "_draft", 'Thumbs.db', '.DS_Store']
 
 language = 'zh_CN'
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_rtd_theme'
+# html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
 html_static_path = ['_static']
 
-source_suffix = {
-    '.rst': 'restructuredtext',
-    '.md': 'markdown',
-}
+source_suffix = ['.rst', '.md']
+
+myst_dmath_allow_labels = True
 
 latex_engine = "xelatex"
 latex_use_xindy = False
