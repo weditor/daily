@@ -1,5 +1,8 @@
 # gradle 的 Project、Tasks
 
+之前提到 gradle 三层概念: Project/Task/Code。
+作为构建系统，最重要的就是任务(Task), 这也是本节主要介绍的内容。
+
 ## Task
 
 Project 能够设置的东西比较少，这里直接介绍 Task。
@@ -17,18 +20,22 @@ tasks.register("hello") {
 }
 ```
 
-通过 `gradle -q hello` 来执行这个任务
+定义好后，可以通过 `gradle -q hello` 来执行这个任务
 
 ```shell
 ~/work/demo$ gradle -q hello
 Hello world!
 ```
 
+:::{note}
+
 注意: `-q` 选项是 `--quite` 的缩写，并不是必需的，只是为了让日志简洁一些。
+
+:::
 
 ### doFirst/doLast
 
-task 主要有两个步骤，首先执行 doFirst 代码块，然后执行 doLast 代码块
+task 的执行分为两个步骤, 对应两个函数: doFirst/doLast.
 
 ```kotlin
 // build.gradle.kts
@@ -47,6 +54,8 @@ tasks.register("hello") {
 Hello world first!
 Hello world last!
 ```
+
+一般无脑用 doFirst 就好，doLast 一般是留给后期打补丁用的。
 
 ### task 是代码
 
@@ -82,7 +91,7 @@ tasks.register("hello") {
 tasks.register("intro") {
     dependsOn("hello")
     doLast {
-        println("I'm Gradle")
+        println("I am Gradle")
     }
 }
 ```
@@ -90,7 +99,7 @@ tasks.register("intro") {
 ```shell
 > gradle -q intro
 Hello world!
-I'm Gradle
+I am Gradle
 ```
 
 注意，依赖关系是懒加载的，可以在依赖项还没声明时就知名依赖。
@@ -187,9 +196,9 @@ BUILD SUCCESSFUL in 1s
 
 ```
 
-## 原理
+## DSL 原理
 
-好像很复杂的样子?
+DSL 好像很复杂的样子,
 这是怎么实现的呢?
 
 ### Project 对象

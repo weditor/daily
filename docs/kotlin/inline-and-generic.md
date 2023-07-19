@@ -107,7 +107,7 @@ kotlin 可以与 java 无缝调用，但是仍然有很多开源 java 库(例如
 
 class 中的 inline 函数需要关注权限问题。例如 public inline 函数不能访问 private 成员和方法, 会导致无法展开。
 
-例如:
+例如，下面的 isTeenager 函数访问了私有的 age:
 
 ```kotlin
 class User {

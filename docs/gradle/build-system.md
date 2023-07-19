@@ -2,7 +2,7 @@
 
 ## 构建系统介绍
 
-首先介绍一下 Make，Ant 这些构建系统, 会对 gradle 的设计思路有一些帮助。
+首先介绍一下 Make，Ant 这些构建系统, 对于理解 gradle 的设计思路有一些帮助。
 
 ### Make
 
@@ -17,14 +17,14 @@ mytask:
     echo "finish!"
 ```
 
-`mytask` 是任务名称, 任务(Task)由一系列 shell 命令(Command)组成，通过缩进来体现层级。
+`mytask` 是任务名称, 任务(Task)由一系列 shell 命令(Command)组成，通过 tab 缩进(不能是空格缩进)来体现层级。
 
 在 Linux 上将这个文件保存为 Makefile, 然后执行 `make mytask` 命令(make 隐式约定会寻找当前目录下的 Makefile 文件)，就会执行 `mytask` 里面的指令，最后一条指令会输出 "finish"
 
 任务之间也可以有依赖, 下面的 `taskZ` 依赖了 `taskA`、`taskB`:
 
 ```makefile
-// Makefile
+# Makefile
 taskA:
     echo "I'm task a"
 taskB:
@@ -42,7 +42,7 @@ I'm task b
 I'm task z
 ```
 
-如果用 make 来做 java 构建:
+如果用 make 来做 java 构建，可以这样写:
 
 ```makefile
 build:
@@ -52,13 +52,15 @@ build:
 
 Makefile 理念很简单，使用灵活，语法完善，功能强大，几乎是一种完美的构建系统，所以经久不衰。它确定了基于 _DAG 任务系统_ 来实现 _构建系统_ 的基本思路.
 
-Make 内的指令都是 shell 指令，与 shell 深度绑定绑定，所以在 Linux 上使用较多，跨平台不太方便。那有什么是跨平台的呢？java 就是其中之一，所以就有人想能不能将指令使用 java 实现，如此一来就能实现一种跨平台的任务系统了。所以就诞生了 Ant。
+Make 内的指令都是 shell 指令，与 shell 深度绑定绑定，所以在 Linux 上使用较多，无法跨平台。
+
+如今，跨平台也不算什么稀罕的东西了。java 就是跨平台成员之一，所以就有人想能不能将指令使用 java 实现，如此一来就能实现一种跨平台的任务系统了。所以就诞生了 Ant。
 
 ### Ant
 
 [Ant](https://ant.apache.org/) 也是一种通用型构建系统，基本思路与 Make 一致。
 
-Make 只有 Task/Command 两层结构，主 task 和子 task 在并没有分别，都可以单独执行，所以维护者可能很难找到要执行哪一个任务, 这方面只能靠公共约定。
+Make 只有 Task/Command 两层结构， task 和 task 并没有分别，都可以单独执行，所以维护者可能很难找到哪一个任务是入口, 这方面只能靠公共约定。
 
 Ant 做了一些改进，拥有 Project/Target/Task 三层结构，
 其中 Target/Task 分别对应了 Make 的 Task/Command 概念，
@@ -105,8 +107,18 @@ Ant 做了一些改进，拥有 Project/Target/Task 三层结构，
 </project>
 ```
 
+嗯... 看起来有点复杂? 截取其中一小片来看:
+
+```xml
+<mkdir dir="${dist}/lib" />
+<delete dir="${dist}" />
+
+<javac srcdir="${src}" destdir="${build}" />
+<jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}" />
+```
+
 虽然是 xml，不过仍然可以看出来 Make 的影子,
-比如上面的 `mkdir` `delete` `javac` 等, 只不过他们都是 java 实现的。
+比如上面的 `mkdir` `delete` `javac` 等, 与 shell 命令如出一辙, 只不过他们都是 java 实现的。
 比如 delete, 就对应了一个 java 函数，它接受一个 dir 参数。
 
 如果希望自定义指令，可以自己写一个 ant 插件，编译一个 jar 包让 ant 加载上去。
@@ -122,7 +134,7 @@ Ant 做了一些改进，拥有 Project/Target/Task 三层结构，
 ![gradle dag](/_static/gradle/gradle-dag.png)
 
 gradle 也有三层概念: Project/Task/Code, 其中 Task/Code 对应了 Make 的 Task/Command。
-gradle 的构建脚本就是 jvm 代码，目前支持两种语言: `groovy`/`kotlin`. 后面介绍主要使用 `kotlin DSL`.
+gradle 的构建脚本就是 jvm 代码，目前支持使用两种语言编写构建脚本: `groovy`/`kotlin`. (后面介绍主要使用 `kotlin DSL`)
 
 比如这就是一个很简单的 gradle 构建脚本:
 
@@ -131,6 +143,6 @@ gradle 的构建脚本就是 jvm 代码，目前支持两种语言: `groovy`/`ko
 println("hello world")
 ```
 
-只不过它只打印了 _hello world_ , 而且这个案例没有体现 task 概念，后面再展开介绍。
+它只打印了 _hello world_ 。
 
 gradle 的历史以及基本原理算是说完了，后面开始介绍 gradle 的使用方法了。

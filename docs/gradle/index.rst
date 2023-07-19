@@ -10,7 +10,6 @@ gradle
     ./task.md
     ./lifecycle.md
     ./plugin.md
-    ./buildSrc.md
     ./gradle-wrapper.md
 
 .. https://docs.gradle.org/7.5.1/dsl/org.gradle.api.Task.html

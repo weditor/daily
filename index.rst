@@ -13,6 +13,7 @@
    ./docs/kotlin/index.rst
    ./docs/gradle/index.rst
    ./docs/torch/index.rst
+   ./docs/algorithm/index.rst
    ./docs/daily/index.rst
 
 

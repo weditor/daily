@@ -37,12 +37,12 @@ gradle/
 
 > 默认情况下，gradle 会把下载的文件(例如从 maven repository 下载的依赖包)缓存到 home 目录。
 > 如果不希望下载到默认目录，
-> 可以通过设置环境变量 GRADLE_USER_HOME 来指定一个目录
+> 可以通过设置环境变量 GRADLE_USER_HOME 指定为其他目录
 
 ## 初始化一个 gradle 项目
 
 执行 `gradle init`, 初始化一个 gradle 项目。
-gradle 项目初始化脚手架提供了丰富的选项，可以创建各种类型的项目模板。
+gradle 项目初始化脚手架提供了丰富的选项，用于创建各种类型的项目模板。
 下面的案例初始化了一个常见的 java 单模块的可执行项目。
 
 ```shell
@@ -135,7 +135,7 @@ BUILD SUCCESSFUL in 28s
 
 ## 运行项目
 
-原本这个项目是可以直接运行的，由于国内访问 maven/gradle 等网站很慢，所以咱们还得采用一些手段让它运行起来。
+原本这个项目是可以直接运行的，由于国内访问 maven/gradle 等网站很慢，编译被卡脖子了，所以咱们还得采用一些手段让它运行起来。
 
 ### 配置 settings.gradle.kts
 

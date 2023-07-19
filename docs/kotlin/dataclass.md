@@ -128,14 +128,14 @@ kotlin 的非空概念 + 不可变性，是提升项目可维护性的神器。
 
 ## WhatIf
 
-**问题 1**: 如果都声明为不可变 class，那我想修改了怎么办?
+**问题 1**: 如果都声明为不可变 class，想修改的话怎么办?
 
 update = delete + create. 创建一个新的，销毁旧的。例如修改年龄 `User user2 = new User(oldUser.name, 18)`。
 
-不过 kotlin 对于 data class 提供了 copy 语法糖: `val user2 = user.copy(age=18)`
+kotlin 对 data class 提供了 copy 语法糖，可以改写成等价的代码: `val user2 = user.copy(age=18)`
 
 至于性能问题, 没有确切的 profile 证据，实在是没必要在这种地方抠性能。
-而且人工维护成本大于机器运行成本。
+人工维护成本大于机器运行成本。
 
 **问题 2**: 所有字段都声明为 public, 后期需求变更，那个字段变成了只能函数计算怎么办?
 

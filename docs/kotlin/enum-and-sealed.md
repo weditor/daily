@@ -40,14 +40,15 @@ fun calc(one: Int, two: Int, op: BinOp): Int {
 }
 ```
 
-我个人更倾向于前一种: 枚举完所有情况。使用 else 后， when+enum 的编译检测就没有了。
+个人更倾向于前一种: 枚举完所有情况。一旦引入 else ， when+enum 的编译检测就没有了。
 
 ## sealed class - 加强版 enum
 
 `enum` 是一种特殊的 class, 它们只能实例化出来特定个数的实例。
 与 `enum` 类似，`sealed` 也是一种特殊的 class，但是它们只能派生出有限个子类，而不是限制实例个数。
 
-例如，颜色有(且只有)两种表达方案: RGB, HSI; 就可以使用 `sealed class` 表达，
+例如，颜色有(且只有)两种表达方案: RGB, HSI; 这很像 enum，但没法用 enum 表达，因为 RGB 还包含可变的 r/g/b 三个属性，
+这就是 `sealed class` 发挥作用的时候了。
 
 ```kotlin
 sealed class Color()

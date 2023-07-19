@@ -152,33 +152,25 @@ with 代码相当于告诉维护者:
 
 ### let
 
-let 函数用于将一组操作串联到一起，从语义上体现它们是一组相关操作。
+let 函数用来把非链式算子转换为链式算子，连接断开的链式操作。
 
-比如下面的代码
-
-```kotlin
-val name = user.getName()
-val lowName = name.toLowerCase()
-println(lowName)
-```
-
-可以修改成
+比如下面的代码, 查找用户所在城市市长的地址。
 
 ```kotlin
-user.getName().let {
-    it.toLowerCase()
-}.let {
-    println(it)
-}
+val city = user.getAddress().getCity()
+val mayor = findMayorByCity(city.name)
+val mayorAddr = mayor.getAddress()
 ```
 
-let 函数体中通过 it 访问上游，并返回 lambda 的返回值。
-它很像 `map` 函数，只不过它针对的是普通对象，而不是集合。
+`user.getAddress().getCity()` 和 `mayor.getAddress()` 都是链式操作，但是被 `findMayorByCity` 被隔断了。
 
-let 函数相当于告诉维护者:
+利用 let 可以修改成
 
-> 你问我为什么要写这么长的一个 let 链? 我明白把 let 去掉也可以，但是它们是一个整体，要么都看完，要么别看。
-> 我只是不太希望后面的开发人员无意间在 语句 1/语句 2 中间插入一些无关的代码破坏这种整体性。
+```kotlin
+val mayorAddr = user.getAddress().getCity().let { findMayorByCity(it.name) }.getAddress()
+```
+
+用法上，它很像 `map` 函数，只不过它针对的是普通对象，而不是集合。
 
 ### also
 
