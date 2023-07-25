@@ -14,6 +14,7 @@
    ./docs/gradle/index.rst
    ./docs/torch/index.rst
    ./docs/algorithm/index.rst
+   ./docs/spring/index.rst
    ./docs/daily/index.rst
 
 
