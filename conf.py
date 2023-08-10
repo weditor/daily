@@ -36,6 +36,7 @@ html_static_path = ['_static']
 source_suffix = ['.rst', '.md']
 
 myst_dmath_allow_labels = True
+myst_heading_anchors = 3
 
 latex_engine = "xelatex"
 latex_use_xindy = False
