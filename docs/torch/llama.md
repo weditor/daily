@@ -138,40 +138,32 @@ R_{m\theta} ^T  R_{n\theta} & = \left\lbrack \begin{array}{}
       sin(m\theta)&cos(m\theta)
    \end{array}\right\rbrack ^T
    \left\lbrack
-
    \begin{array}{}
       cos(n\theta)&-sin(n\theta) \\
       sin(n\theta)&cos(n\theta)
    \end{array}\right\rbrack \\
-
    & = \left\lbrack \begin{array}{}
       cos(m\theta)&sin(m\theta) \\
       -sin(m\theta)&cos(m\theta)
    \end{array}\right\rbrack
    \left\lbrack
-
    \begin{array}{}
       cos(n\theta)&-sin(n\theta) \\
       sin(n\theta)&cos(n\theta)
    \end{array}\right\rbrack \\
-
    & = \left\lbrack \begin{array}{}
       cos(m\theta)cos(n\theta)+sin(m\theta)sin(n\theta)&-cos(m\theta)sin(n\theta)+sin(m\theta)cos(n\theta) \\
       -sin(m\theta)cos(n\theta)+cos(m\theta)sin(n\theta)&sin(m\theta)sin(n\theta)+cos(m\theta)cos(n\theta)
    \end{array}\right\rbrack \\
-
    & = \left\lbrack \begin{array}{}
       cos(m\theta - n\theta)&sin(m\theta - n\theta) \\
       -sin(m\theta - n\theta)&cos(m\theta - n\theta)
    \end{array}\right\rbrack \\
-
    & = \left\lbrack \begin{array}{}
       cos((m- n)\theta)&sin((m - n)\theta) \\
       -sin((m - n)\theta)&cos((m - n)\theta)
    \end{array}\right\rbrack \\
-
-   & = R_{(m-n)\theta}
-
+   & = R_{(m-n)\theta}^T
 \end{aligned}
 $$
 
@@ -182,7 +174,6 @@ $$
 \begin{aligned}
 G_{m,n}
    & = (W_q X_m)^T  R_{m\theta} ^T  R_{n\theta} (W_k X_n) \\
-
    & = (W_q X_m)^T R_{(m-n)\theta} ^T (W_k X_n)
 \end{aligned}
 $$

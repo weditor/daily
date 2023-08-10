@@ -16,6 +16,7 @@
    ./docs/algorithm/index.rst
    ./docs/spring/index.rst
    ./docs/daily/index.rst
+   ./docs/java/index.rst
 
 
 索引页面
