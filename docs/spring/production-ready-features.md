@@ -459,7 +459,8 @@ actuator 的指标收集主要依赖了 [Micrometer](https://micrometer.io/), Mi
 这里主要介绍 Prometheus。
 
 添加 micrometer 的 Prometheus 依赖: `io.micrometer:micrometer-registry-prometheus:1.11.2`， 即可启用。
-可以配置 `management.metrics.export.prometheus.enabled=false` 禁用。启用后，访问 `/actuator/prometheus` 访问 prometheus 指标。
+访问 `/actuator/prometheus` 访问 prometheus 指标。
+可以配置 `management.metrics.export.prometheus.enabled=false` 禁用。
 
 ### 支持的指标
 
