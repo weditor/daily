@@ -6,5 +6,14 @@
 6. vert.x
 7. python 协程
 8. python 解释器
-9. 函数时编程，y-combinator, Monad
-10. https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python; https://www.cnblogs.com/JetpropelledSnake/p/9094103.html
+9. 函数式编程，y-combinator, Monad
+10. 设计模式
+11. jackson
+12. DDD 与 REST
+13. powershell
+14. 信息熵
+15. pytorch
+    - jit
+    - quantization
+    - distributed
+    - torchDynamo
