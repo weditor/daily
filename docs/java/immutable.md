@@ -1,10 +1,4 @@
----
-title: Immutable 模式
----
-
 # Immutable 模式
-
----
 
 ## 可变数据
 
@@ -19,8 +13,6 @@ name = "two";
 final String name = "one";
 name = "two"; // compile ERROR!!!
 ```
-
---
 
 对象的可变性
 
@@ -42,8 +34,6 @@ public class User {
 }
 ```
 
---
-
 final 只能维持 "浅" 不可变
 
 ```java
@@ -54,8 +44,6 @@ user = new User("Tom", 5);  // compile Error!!!
 ```java
 user.name = "Tom"; // compile OK.
 ```
-
---
 
 如何实现 Immutable class
 
@@ -76,11 +64,9 @@ public class ReadOnlyUser {
 }
 ```
 
----
 
 ## Why
 
---
 
 高并发
 
@@ -93,7 +79,6 @@ void parallelFunc(User user) {
 }
 ```
 
---
 
 可维护性
 
@@ -113,7 +98,6 @@ ReadOnlyUser user = new ReadOnlyUser("Jerry", 2);
 var perm = createPermForUser(user);
 ```
 
---
 
 最小数据依赖
 
@@ -141,22 +125,17 @@ ReadonlyNluResponse nulParse(ReadonlyNluRequest nluRequest) {
 }
 ```
 
----
 
 ## 哪些地方应具有不可变性
-
---
 
 1. 变量定义: `final String name = ...;`
 2. class 定义: `final class User {...}`
 3. class: 只使用 Getter 方法，禁用 Setter 方法
 4. collection: `ImmutableSet.of("red", "orange")`
 
----
 
 ## 一些惯用法
 
---
 
 修改对象 = 销毁 + 创建
 
@@ -167,7 +146,6 @@ User oldUser = new User("Jerry", 2);
 User newUser = new User(oldUser.name, 3);
 ```
 
---
 
 builder 模式
 
@@ -185,7 +163,6 @@ User newUser = User.Builder(oldUser)
     .setName(3);
 ```
 
----
 
 集中修改
 
@@ -237,7 +214,6 @@ void funcC(NluRequest request) { ... }
 :::
 :::
 
----
 
 ## Immutable 的边界
 
@@ -272,10 +248,8 @@ user.address.city.code = "310000"
 
 :::
 
---
 
 ### 全面使用 Immutable 数据是可行的
 
----
 
 ## 谢谢

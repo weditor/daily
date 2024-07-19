@@ -36,6 +36,7 @@ class Publisher(val data: List<Int>) {
         }
     }
 }
+```
 
 这是这类以流为基础的框架最基本的理念。下一步尝试扩充 subscriber 的能力, 希望 publisher 在送入数据之前先通知一下, 将它也定义为一个类:
 
