@@ -22,7 +22,7 @@ extensions = [
 myst_enable_extensions = ["colon_fence", "dollarmath", "attrs_inline"]
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', "_draft", 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', "_draft", 'Thumbs.db', '.DS_Store', '**/*.slide.md']
 
 language = 'zh_CN'
 
