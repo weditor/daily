@@ -5,7 +5,7 @@
 
 继承关系如下:
 
-```mermaid
+```{mermaid}
 flowchart BT
 
     HttpConnectionProvider --> ConnectionProvider
