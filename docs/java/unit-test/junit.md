@@ -108,3 +108,17 @@ class CalcTests {
 
 ## AfterAll
 ```
+
+## 检验单元测试
+
+我们可以通过覆盖率来检验单元测试是否完整。
+覆盖率可以在 IDEA 上可视化出来，也可以通过 jacoco 等覆盖率工具输出报告，
+这里仅介绍 IDEA 可视化覆盖率。
+
+在测试案例上点击 **Run Tests With Coverate**
+
+![run ut with coverate](/_static/java/unit-test/unit-test-run.jpg)
+
+等待执行完成后，即可在左侧树形文件菜单、右侧报告栏看到了
+
+![run ut with coverate](/_static/java/unit-test/unit-test-ide.jpg)
